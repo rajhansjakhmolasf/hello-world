@@ -32,7 +32,7 @@ stage('check certificates') {
 		def files = findFiles(glob: '**/*.jks')
 		echo """${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"""
 		def certDetails = sh "keytool -list -v -keystore ${files[0].path} -storepass 123456789"
-		println(certDetails)
+		echo "output : ${certDetails}"
 		}
     }
 }
