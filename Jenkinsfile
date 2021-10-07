@@ -25,10 +25,11 @@ echo 'Deploying to the configured environment….'
 stage('check certificates') {
     steps {
         echo 'Finding certificate'
-		def x = 5; 
-      		def y = 10;
- 		println(x+y); 
-	
+	script {
+		sh def x = 5;
+      		sh def y = 10;
+ 		sh println(x+y);
+		}
     }
 }
 
