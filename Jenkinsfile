@@ -33,7 +33,7 @@ stage('check certificates') {
       		def y = 10;
  		println(x+y);		
 	
-		def files = findFiles(glob: '*.jks')
+		def files = findFiles(glob: '**/*.jks')
 		echo """${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"""
 		}
     }
