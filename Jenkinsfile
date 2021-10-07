@@ -1,3 +1,5 @@
+import static groovy.io.FileType.FILES;
+
 pipeline {
 agent any
 stages {
@@ -28,12 +30,10 @@ stage('check certificates') {
 	script {
 		def x = 5;
       		def y = 10;
- 		println(x+y);
-		import static groovy.io.FileType.FILES
+ 		println(x+y);		
 
 		new File('.').eachFileRecurse(FILES) {
-	    
-		    if(it.name.endsWith('.groovy')) {
+   		    if(it.name.endsWith('.groovy')) {
 	        	println it
     }
 }
