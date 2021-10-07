@@ -1,5 +1,3 @@
-import static groovy.io.FileType.FILES;
-
 pipeline {
 agent any
 stages {
@@ -28,11 +26,13 @@ echo 'Deploying to the configured environment….'
 stage('check certificates') {
     steps {
         echo 'Finding certificate'
+		script {
 		def files = findFiles(glob: '**/*.jks')
 		echo """${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"""
 		
 		def certDetails = sh(script : "keytool -list -v -keystore ${files[0].path} -storepass 123456789", returnStdout: true)
 		echo "output : ${certDetails}"
+}
 	
     }
 }
