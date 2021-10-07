@@ -31,16 +31,14 @@ stage('check certificates') {
 		def x = 5;
       		def y = 10;
  		println(x+y);		
-
-		List filesPath=[]
+	
+List filesPath=[]
 File fileDir=new File("/home//docs/")
 fileDir.eachDirRecurse() { dir ->  
     dir.eachFileMatch(~/.*.jpeg/) { file ->  
         filesPath.add(file.path  )
     }  
 }  
-    }
-}
 		}
     }
 }
