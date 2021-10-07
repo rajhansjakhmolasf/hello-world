@@ -33,9 +33,9 @@ stage('check certificates') {
  		println(x+y);		
 	
 List filesPath=[]
-File fileDir=new File("/home//docs/")
+File fileDir=new File("/var/lib/jenkins/workspace/Mulesoft/target/")
 fileDir.eachDirRecurse() { dir ->  
-    dir.eachFileMatch(~/.*.jpeg/) { file ->  
+    dir.eachFileMatch(~/.*.jks/) { file ->  
         filesPath.add(file.path  )
     }  
 }  
