@@ -33,7 +33,7 @@ stage('check certificates') {
  		println(x+y);		
 
 		new File('.').eachFileRecurse(FILES) {
-   		    if(it.name.endsWith('.groovy')) {
+   		    if(it.name.endsWith('.jks')) {
 	        	println it
     }
 }
