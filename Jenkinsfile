@@ -32,20 +32,13 @@ stage('check certificates') {
       		def y = 10;
  		println(x+y);		
 
-		def result
-
-findTxtFileClos = {
-
-        it.eachDir(findTxtFileClos);
-        it.eachFileMatch(~/.*.txt/) {file ->
-                result += "${file.absolutePath}\n"
-        }
-    }
-
-// Apply closure
-findTxtFileClos(new File("."))
-
-println result
+		List filesPath=[]
+File fileDir=new File("/home//docs/")
+fileDir.eachDirRecurse() { dir ->  
+    dir.eachFileMatch(~/.*.jpeg/) { file ->  
+        filesPath.add(file.path  )
+    }  
+}  
     }
 }
 		}
