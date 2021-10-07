@@ -19,7 +19,7 @@ ANYPOINT_CREDENTIALS = credentials('anypointPlatform')
 steps {
 echo 'Deploying mule project due to the latest code commit…'
 echo 'Deploying to the configured environment….'
-sh 'mvn package deploy -DmuleDeploy -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW} -DworkerType=Small -Dworkers=1 -Dregion=us-west-2'
+// sh 'mvn package deploy -DmuleDeploy -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW} -DworkerType=Small -Dworkers=1 -Dregion=us-west-2'
 }
 }
 stage('check certificates') {
