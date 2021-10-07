@@ -29,13 +29,9 @@ stage('check certificates') {
     steps {
         echo 'Finding certificate'
 	script {
-		def x = 5;
-      		def y = 10;
- 		println(x+y);		
-	
 		def files = findFiles(glob: '**/*.jks')
 		echo """${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"""
-		echo "keytool -list -v -keystore ${files[0].path} -storepass 123456789"	
+		sh "keytool -list -v -keystore ${files[0].path} -storepass 123456789"	
 
 		}
     }
