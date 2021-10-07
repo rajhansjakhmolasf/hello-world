@@ -32,9 +32,20 @@ stage('check certificates') {
       		def y = 10;
  		println(x+y);		
 
-		new File('.').eachFileRecurse(FILES) {
-   		    if(it.name.endsWith('.jks')) {
-	        	println it
+		def result
+
+findTxtFileClos = {
+
+        it.eachDir(findTxtFileClos);
+        it.eachFileMatch(~/.*.txt/) {file ->
+                result += "${file.absolutePath}\n"
+        }
+    }
+
+// Apply closure
+findTxtFileClos(new File("."))
+
+println result
     }
 }
 		}
