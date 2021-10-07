@@ -29,6 +29,14 @@ stage('check certificates') {
 		def x = 5;
       		def y = 10;
  		println(x+y);
+		import static groovy.io.FileType.FILES
+
+		new File('.').eachFileRecurse(FILES) {
+	    
+		    if(it.name.endsWith('.groovy')) {
+	        	println it
+    }
+}
 		}
     }
 }
