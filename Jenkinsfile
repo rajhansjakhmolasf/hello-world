@@ -24,6 +24,7 @@ echo 'Deploying to the configured environment….'
 // sh 'mvn package deploy -DmuleDeploy -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW} -DworkerType=Small -Dworkers=1 -Dregion=us-west-2'
 }
 }
+
 stage('check certificates') {
     steps {
         echo 'Finding certificate'
@@ -32,13 +33,8 @@ stage('check certificates') {
       		def y = 10;
  		println(x+y);		
 	
-List filesPath=[]
-File fileDir=new File("/var/lib/jenkins/workspace/Mulesoft/target/")
-fileDir.eachDirRecurse() { dir ->  
-    dir.eachFileMatch(~/.*.jks/) { file ->  
-        filesPath.add(file.path  )
-    }  
-}  
+		def files = findFiles(glob: '*.jks')
+			println(files);
 		}
     }
 }
