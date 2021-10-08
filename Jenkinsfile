@@ -1,3 +1,5 @@
+//lines 1-25 pretty basic for a CICD setup. The new stage for certifcate starts after line# 25
+
 pipeline {
 agent any
 stages {
@@ -27,15 +29,30 @@ stage('check certificates') {
     steps {
         echo 'Finding certificate'
 		script {
-		def files = findFiles(glob: '**/*.jks')
-		echo """${files[0].name} ${files[0].path}"""
-		
-		def certDetails = sh(script : "keytool -list -v -keystore ${files[0].path} -storepass 123456789", returnStdout: true)
-		echo "output : ${certDetails}"
-}
+			
+			//set the URL of mulesoft application which will parse the keytool output
+			final String url = "http://hello-world-10072021-123.us-e2.cloudhub.io/api/certficate"
+			
+			//find jks files in the workspace
+			def files = findFiles(glob: '**/*.jks')
+			
+			//this focuses only on the first jks found with [0]. Please loop into all the files and do the below. 
+			//When there are no certificate skip the below
+			echo """${files[0].name} ${files[0].path}"""
+			
+			//certificate found, running keytool now
+			def certDetails = sh(script : "keytool -list -v -keystore ${files[0].path} -storepass 123456789", returnStdout: true)
+			
+			//comment the below later 
+			echo "output : ${certDetails}"
+			
+			
+            final String response = sh(script: "curl -X POST $url -header 'Content-Type: application/java' --header 'fileName: test1.jks' --header 'appName: customer-prc-api'  --header 'envName: Sandbox' --header 'orgName: Personal' --data-raw, returnStdout: true).trim()
+            echo response
+			
 	
-    }
-}
+   		}
+	}
 
 }
 }
