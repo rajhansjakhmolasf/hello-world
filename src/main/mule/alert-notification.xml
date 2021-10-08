@@ -31,27 +31,27 @@ output application/java
 // Objectstore retrive all output is hashmap of string key and bytes value. Database, it would be much easier to pull information
 
 //cloudhub connector cant send csv or excel attachment but just string data so needed to convert everything to meaningful string sentences
+
+var certData=flatten ((payload mapObject {
+	(certs :read($, "application/json")) // read used to parse the bytes
+}).*certs)
 ---
 "Details of certificates expiring in next 30 days - \r\n\r\n\r\n" ++
-(((flatten ((payload mapObject {
-	(certs :read($, "application/json")) // read used to parse the bytes
-}).*certs)) filter ($.expiryDays <= 30) 
+(((((certData) 
 
 //getting only the certificates having expiry within a month
+filter (($.expiryDate as DateTime {format : "E MMM dd HH:mm:ss z yyyy"} - now()).days <= 30)))
 
 
 //converting the above output to string using joinBy for cloudhub connector
 map {
     a : "Certificate in application " ++ $.appName ++ " deployed on environment " 
     ++ $.envName
-    ++ " with file name " ++ $.fileName ++  " having expiration date as " ++ $.expiryDate ++
-    " is expiring in next " ++ $.expiryDays ++ " days."
-}).a joinBy "\r\n\n")
-
-]]></ee:set-payload>
+    ++ " with file name " ++ $.fileName ++  " having expiration date as " ++ $.expiryDate ++ "."
+}).*a joinBy "\r\n\r\n") default ""]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-				<cloudhub:create-notification doc:name="send Alert Notification" doc:id="9877b6e3-4c67-4603-9c65-4d96dcd77e68" config-ref="CloudHub_Config" domain="hello-world-10072021-123" priority="INFO">
+				<cloudhub:create-notification doc:name="send Alert Notification" doc:id="9877b6e3-4c67-4603-9c65-4d96dcd77e68" config-ref="CloudHub_Config" domain="${cloudhub.app}" priority="INFO">
 		</cloudhub:create-notification>
 			</otherwise>
 		</choice>

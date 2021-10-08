@@ -1,4 +1,4 @@
-//lines 1-28 pretty basic for a CICD setup. The new stage for certifcate starts after line# 25
+//lines 1-28 pretty basic for a CICD setup. The new stage for certificate starts after line# 25
 
 pipeline {
 agent any

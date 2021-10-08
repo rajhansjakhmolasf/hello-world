@@ -19,7 +19,6 @@ output application/json
 // A cicd expert which good scripting knowledge will prefer to do it in CICD using grep or awk commands but I found it easier to do it here.
 
 fun findExpiry(data) = (data splitBy  "\n" filter (($ contains "Alias") or ($ contains "Valid") or ($ contains "Owner")) map using (a= $ splitBy(": ")){
- ("expiryDays": ((trim(a[-1]) as DateTime {format : "E MMM dd HH:mm:ss z yyyy"}) - now()).days) if (a[0] == "Valid from"),
  ("expiryDate": trim(a[-1]) as DateTime {format : "E MMM dd HH:mm:ss z yyyy"})  if (a[0] == "Valid from"),
  ((a[0]) : trim(a[-1])) if (a[0] != "Valid from")
 }) reduce ($$ ++ $)

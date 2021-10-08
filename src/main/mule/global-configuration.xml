@@ -12,7 +12,7 @@ http://www.mulesoft.org/schema/mule/cloudhub http://www.mulesoft.org/schema/mule
 	<os:object-store name="Object_store" doc:name="Object store" doc:id="905a31b1-b513-4324-97f6-c60a7cf94d7f" />
 	
 	<cloudhub:config name="CloudHub_Config" doc:name="CloudHub Config" doc:id="05acf77c-8b76-4534-86ad-0cfb38141d8b" >
-		<cloudhub:connection username="${cloudhub.user}" password="${cloudhub.password}" environment="${cloudhub.env}" />
+		<cloudhub:connection username="${cloudhub.user}" password="${cloudhub.password}" environment="${cloudhub.env.id}" />
 	</cloudhub:config>
 	<global-property doc:name="Global Property" doc:id="32ab803b-4ef9-4f69-adf1-6cef15f93ef9" name="env" value="dev" />
 	<configuration-properties doc:name="Configuration properties" doc:id="d9b263e5-0bc7-44b9-a8b5-845b64728904" file="properties/${env}.properties" />
