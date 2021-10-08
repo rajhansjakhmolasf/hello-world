@@ -25,7 +25,7 @@ echo 'Deploying to the configured environment….'
 }
 }
 
-stage('check certificates') {
+stage('Certificate Check') {
     steps {
         echo 'Finding certificate'
 		script {
