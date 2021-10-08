@@ -27,24 +27,24 @@
 			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
-<artifactId>mule-maven-plugin</artifactId>
-<version>${mule.maven.plugin.version}</version>
-<extensions>true</extensions>
-<configuration>
-<cloudHubDeployment>
-<uri>https://anypoint.mulesoft.com/</uri>
-<muleVersion>${app.runtime}</muleVersion>
-<username>${username}</username>
-<password>${password}</password>
-<applicationName>${project.artifactId}</applicationName>
-<environment>Sandbox</environment>
-<workerType>${workerType}</workerType>
-<workers>1</workers>
-<objectStoreV2>true</objectStoreV2>
-<region> ${region} </region>
-</cloudHubDeployment>
-</configuration>
-</plugin>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com/</uri>
+						<muleVersion>${app.runtime}</muleVersion>
+						<username>${username}</username>
+						<password>${password}</password>
+						<applicationName>${project.artifactId}</applicationName>
+						<environment>Sandbox</environment>
+						<workerType>${workerType}</workerType>
+						<workers>1</workers>
+						<objectStoreV2>true</objectStoreV2>
+						<region> ${region} </region>
+					</cloudHubDeployment>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -59,6 +59,18 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.1</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-objectstore-connector</artifactId>
+			<version>1.2.1</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.connectors</groupId>
+			<artifactId>mule-cloudhub-connector</artifactId>
+			<version>1.0.1</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
