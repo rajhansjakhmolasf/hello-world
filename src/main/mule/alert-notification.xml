@@ -6,9 +6,7 @@
 http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/cloudhub http://www.mulesoft.org/schema/mule/cloudhub/current/mule-cloudhub.xsd">
-	<cloudhub:config name="CloudHub_Config" doc:name="CloudHub Config" doc:id="fbf36f08-9c42-4690-940b-b0c71f25d2d0" >
-		<cloudhub:connection username="rajhansjakhmolasf" password="Zxcvbnm!1" environment="55e1beab-7e4e-4257-8663-ac4e979e3d08" />
-	</cloudhub:config>
+	
 	<flow name="alert-notifcation-30days" doc:id="c79c79cb-b87d-4096-973b-b5ceb0a9a976" >
 		<scheduler doc:name="Scheduler - once a day" doc:id="b2a76ead-c2e9-4a5e-baf0-4b3d0432160b" >
 			<scheduling-strategy >

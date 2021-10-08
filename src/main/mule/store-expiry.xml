@@ -6,10 +6,7 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
 http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7fe55b88-ad55-435d-8aae-306f709a4537" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
-	</http:listener-config>
-	<os:object-store name="Object_store" doc:name="Object store" doc:id="a645b3a6-5fcb-4a7b-98a9-f5d05b28d27d" />
+	
 	<flow name="store-expiryFlow" doc:id="1cbfe264-5cda-4a2c-a421-620ddd1d2ca1" >
 		<http:listener doc:name="Listener" doc:id="6098fe47-d38e-4ff8-905a-5b551b376ed8" config-ref="HTTP_Listener_config" path="/api/certficate" allowedMethods="POST"/>
 		<logger level="INFO" doc:name="Logger - start" doc:id="7d9ed214-fe34-490f-af74-c795c66900f3" message="request received"/>
