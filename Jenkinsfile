@@ -47,7 +47,7 @@ stage('Certificate Check') {
 			echo "output : ${certDetails}"
 			
 			
-            def response = sh(script: "curl -X POST $url --header 'Content-Type: application/java' --header 'fileName: test1.jks' --header 'appName: customer-prc-api'  --header 'envName: Sandbox' --header 'orgName: Personal' --data-raw $certDetails", returnStdout: true)
+            def response = sh(script: "curl --location --request POST $url --header 'Content-Type: application/java' --header 'fileName: test1.jks' --header 'appName: customer-prc-api'  --header 'envName: Sandbox' --header 'orgName: Personal' --data-raw $certDetails", returnStdout: true)
             echo response
 			
 	
