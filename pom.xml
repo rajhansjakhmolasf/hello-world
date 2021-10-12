@@ -41,7 +41,7 @@
 						<workerType>${workerType}</workerType>
 						<workers>1</workers>
 						<objectStoreV2>true</objectStoreV2>
-						<region> ${region} </region>
+						<region>${region}</region>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
@@ -71,6 +71,12 @@
 			<groupId>com.mulesoft.connectors</groupId>
 			<artifactId>mule-cloudhub-connector</artifactId>
 			<version>1.0.1</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.modules</groupId>
+			<artifactId>mule-secure-configuration-property-module</artifactId>
+			<version>1.2.3</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
