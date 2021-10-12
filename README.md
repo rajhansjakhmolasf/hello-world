@@ -1,14 +1,14 @@
 
 
-Certificate expiry notification
+**Certificate expiry notification**
 
 This article is targeted for customers, who have purchased the certificate from CA and are interested in having the custom capability, to alert the certificate expiration date to the responsible team for renewing and managing the certificate accordingly. The outcome of this document will be more helpful for the L2/L3 support and maintenance teams to follow up the certificate renewal with the internal or external teams.
 
 Set up a Jenkins pipeline that will perform basic things like build, unit test, deploy, and most importantly check if there is a certificate available in the application source, and then find the certificate expiry date using a password available in the Jenkins file.
 
-[Image: image.png]It is assumed that your CICD pipeline is able to deploy the application to Cloudhub runtime manager. Now, we have an application that is available in github (https://github.com/rajhansjakhmolasf/hello-world)which has a sample certificate that is not used, but we will be using this certificate’s detail to send alerts. 
+[Image: image.png]It is assumed that your CICD pipeline is able to deploy the application to Cloudhub runtime manager. Now, we have an application that is available in github (https://github.com/rajhansjakhmolasf/hello-world)which has a sample certificate that is not used, but we will be using this certificateâ€™s detail to send alerts. 
 
-Our current CICD pipeline is pretty simple having the usual build, test and deploy stages. Now, let’s add a new stage to do the following:
+Our current CICD pipeline is pretty simple having the usual build, test and deploy stages. Now, letâ€™s add a new stage to do the following:
 
 1. Check certificate availability in source code
 2. If certificates are found, then get the expiry details using Keytool command
@@ -30,7 +30,7 @@ As previously mentioned, there are only 2 main components introduced to achieve 
 1. New stage to the CICD pipeline
 2. Mule application to store certificate expiry details and send alerts
 
-New Stage in CICD
+**New Stage in CICD**
 
 This stage consists of scripts in *Jenkinsfile* available in github public repository (https://github.com/rajhansjakhmolasf/hello-world/blob/master/Jenkinsfile). Please go through the new stage Certificate Check to understand it in more detail (current line number 28-53). Comments are added to each line to explain its functionality and any changes required in the future.
 
@@ -42,7 +42,7 @@ Consider the below changes in the new CICD stage:
 4. Add security header once you apply policy to Mulesoft API
 5. Use the Keystore password from Jenkins credentials in line number 46, currently hardcoded to make it easier to run the stage
 
-Mule application
+**Mule application**
 
 This application runs on Mule 4.3 runtime, and it is the same application available in github public repository (https://github.com/rajhansjakhmolasf/hello-world). Kindly refer to src/main/mule folder to understand these 2 flows which *extensively use Dataweave, Objectstore and Cloudhub Connector*. Dataweave plays an important role in converting the Keytool text output to JSON. Please go through objectstore FAQ (https://docs.mulesoft.com/object-store/osv2-faq) and cloudhub connector rate limit (https://docs.mulesoft.com/runtime-manager/alerts-on-runtime-manager#:~:text=When%20using%20CloudHub%20Connector%20to,workers%20assigned%20to%20the%20application.) before using this solution.
 
@@ -58,6 +58,6 @@ Consider the below changes in Mulesoft application:
 6. Disable HTTP wire logging in log4j.xml line number 22
 7. Create a custom alert in your runtime environment following this document (https://docs.mulesoft.com/runtime-manager/custom-application-alerts)
 8. Update the property file with your Cloudhub account details to trigger alerts
+_
 
-
-Please note, that the above guide is just an example to accomplish certificate expiry alerts, and there are multiple ways to achieve the same result. Please do not deem to above code as production-ready, as it may contain bugs and might have stability issues. Thorough testing is strongly recommended, before considering it in production.
+**Please note,**_ that the above guide is just an example to accomplish certificate expiry alerts, and there are multiple ways to achieve the same result. Please do not deem to above code as production-ready, as it may contain bugs and might have stability issues. Thorough testing is strongly recommended, before considering it in production.
